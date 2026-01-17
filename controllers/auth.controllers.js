@@ -79,8 +79,8 @@ export const signUp = async (req, res) => {
         //password hashing
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = await User.create({
-            fullName,
-            email,
+            fullName: normalizedFullName,
+            email: normalizedEmail,
             password: hashedPassword,
             mobileNumber,
             role: role || "user"
@@ -220,7 +220,7 @@ export const googleAuth = async (req, res) => {
 
             user = await User.create({
                 fullName,
-                email,
+                email: email.toLowerCase().trim(),
                 mobileNumber, // Map correctly to mobileNumber schema field
                 role // Default to user if not provided
             });
