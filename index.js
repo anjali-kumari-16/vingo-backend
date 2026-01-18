@@ -10,7 +10,7 @@ import cors from "cors";
 
 
 const app = express();
-const port = process.env.PORT || 8001;
+const port = process.env.PORT || 8002;
 
 app.use((req, res, next) => {
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
@@ -33,4 +33,3 @@ app.listen(port, () => {
   connectDb();
   console.log(`server is running on port ${port}`);
 });
-

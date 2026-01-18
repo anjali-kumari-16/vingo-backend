@@ -6,28 +6,31 @@ import {
   sendOtp,
   verifyOtp,
   resetPassword,
-  googleAuth
+  googleAuth,
+  getCurrentUser
 } from "../controllers/auth.controllers.js";
+import isAuth from '../middlewares/isAuth.js';
 
-const authRouter =express.Router();
+const authRouter = express.Router();
 //signup route
-authRouter.post('/signup',signUp);
+authRouter.post('/signup', signUp);
 //signin route
-authRouter.post('/signin',signIn);
+authRouter.post('/signin', signIn);
 //signout route
-authRouter.get('/signout',signOut);
+authRouter.get('/signout', signOut);
 //forgot password otp send route
-authRouter.post('/send-otp',sendOtp);
+authRouter.post('/send-otp', sendOtp);
 //verify otp route
-authRouter.post('/verify-otp',verifyOtp);
+authRouter.post('/verify-otp', verifyOtp);
 //reset password route
-authRouter.post('/reset-password',resetPassword);
-authRouter.post('/google-auth',googleAuth);
+authRouter.post('/reset-password', resetPassword);
+authRouter.post('/google-auth', googleAuth);
+authRouter.get("/me", isAuth, getCurrentUser);
 
 
 
- 
+
+
 
 
 export default authRouter;
-
